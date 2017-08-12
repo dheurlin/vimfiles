@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/danielheurlin/Dropbox/pkHaxx/FireRed Test'
+let g:netrw_dirhist_2='/Users/danielheurlin/Dropbox/pkHaxx/FireRed Test/show repel steps'
+let g:netrw_dirhist_3='/Users/danielheurlin/Dropbox/pkHaxx/FireRed Test'
+let g:netrw_dirhist_4='/Users/danielheurlin/Dropbox/pkHaxx/FireRed Test/C'
+let g:netrw_dirhist_5='/Users/danielheurlin/Dropbox/pkHaxx/FireRed Test/C/src'
+let g:netrw_dirhist_6='/Users/danielheurlin/Dropbox/pkHaxx/FireRed Test/C/src/showsteps'
