@@ -69,6 +69,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'hzchirs/vim-material'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
