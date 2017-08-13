@@ -82,18 +82,15 @@ if has("gui_running") || term_program == "iTerm.app"
 
     colorscheme vim-material
     let g:airline_theme = 'material'
-    highlight Comment term=bold cterm=italic ctermfg=14 ctermbg=0 gui=italic guifg=#49656F 
 
 " For 256-color terminals
 else
     set t_Co=256 " Enable 256-color-mode
     set background=dark
     
-    " " solarized options
-    " let g:solarized_visibility = "high"
-    " let g:solarized_contrast = "high"
-    let g:solarized_termcolors = 256
-    colorscheme solarized
+    
+    let g:airline_theme = 'monokai'
+    colorscheme monokai
 endif    
 
 " Set airline to use powerfonts (to support cool separators)
@@ -140,6 +137,7 @@ let g:airline_right_alt_sep = '⮃'
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 0
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Set the separators to use 1337 h4xx0rz arrows
@@ -147,6 +145,8 @@ let g:airline#extensions#tabline#left_sep = g:airline_left_sep
 let g:airline#extensions#tabline#right_sep = g:airline_right_sep
 let g:airline#extensions#tabline#left_alt_sep = g:airline_left_alt_sep
 let g:airline#extensions#tabline#right_alt_sep = g:airline_right_alt_sep
+
+
 " This allows buffers to be hidden if you've modified a buffer.
 " This is almost a must if you wish to use buffers in this way.
 set hidden
