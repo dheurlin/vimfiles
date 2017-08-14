@@ -47,9 +47,6 @@ let g:NERDSpaceDelims = 1
 set mouse=
 """ Display line numbers
 set number
-" Make them gray
-" highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
 
 """ Convert tabs to spaces, tab = 4 spaces
 """set tabstop=4
@@ -67,10 +64,16 @@ execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
 Plug 'hzchirs/vim-material'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kien/ctrlp.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'jistr/vim-nerdtree-tabs'
 
 call plug#end()
 
