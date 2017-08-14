@@ -144,12 +144,20 @@ let g:airline_right_alt_sep = '⮃'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
 " Show just the filename
+
+" Show just the filename if it's unique, otherwise add path to make it unique
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#fnamemod = ':t'
+
 " Set the separators to use 1337 h4xx0rz arrows
-let g:airline#extensions#tabline#left_sep = g:airline_left_sep
-let g:airline#extensions#tabline#right_sep = g:airline_right_sep
-let g:airline#extensions#tabline#left_alt_sep = g:airline_left_alt_sep
-let g:airline#extensions#tabline#right_alt_sep = g:airline_right_alt_sep
+" let g:airline#extensions#tabline#left_sep = g:airline_left_sep
+" let g:airline#extensions#tabline#right_sep = g:airline_right_sep
+" let g:airline#extensions#tabline#left_alt_sep = g:airline_left_alt_sep
+" let g:airline#extensions#tabline#right_alt_sep = g:airline_right_alt_sep
+"
+" Actually, let's use straight tabs instead
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Make it use VimDevicons
 let g:airline_powerline_fonts = 1
