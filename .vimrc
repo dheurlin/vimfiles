@@ -74,6 +74,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'godlygeek/csapprox'
 
 call plug#end()
 
@@ -91,8 +92,6 @@ if has("gui_running") || term_program == "iTerm.app"
 " For 256-color terminals
 else
     set t_Co=256 " Enable 256-color-mode
-    set background=dark
-    
     
     let g:airline_theme = 'monokai'
     colorscheme monokai
