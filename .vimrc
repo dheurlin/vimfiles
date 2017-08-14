@@ -21,6 +21,9 @@ let g:nerdtree_tabs_open_on_new_tab = 0
 let g:nerdtree_tabs_open_on_gui_startup = 2
 let g:nerdtree_tabs_open_on_console_startup = 2
 
+" Hide certain file types in NERDtree
+let NERDTreeIgnore = ['\.pyc$', '\.class$']
+
 """ Setup CtrlP so that it doesn't open files in NERDtree buffer
 function! CtrlPCommand()
     let c = 0
