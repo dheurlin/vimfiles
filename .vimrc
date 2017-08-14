@@ -70,6 +70,7 @@ Plug 'hzchirs/vim-material'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -147,6 +148,10 @@ let g:airline#extensions#tabline#right_sep = g:airline_right_sep
 let g:airline#extensions#tabline#left_alt_sep = g:airline_left_alt_sep
 let g:airline#extensions#tabline#right_alt_sep = g:airline_right_alt_sep
 
+" Make it use VimDevicons
+let g:webdevicons_enable = 0
+let g:webdevicons_enable = 1
+let g:airline_powerline_fonts = 1
 
 " This allows buffers to be hidden if you've modified a buffer.
 " This is almost a must if you wish to use buffers in this way.
