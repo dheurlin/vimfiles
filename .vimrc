@@ -87,7 +87,7 @@ call plug#end()
 
 " For gui and true color terminals (currently just iTerm)
 let term_program=$TERM_PROGRAM
-if has("gui_running") || term_program == "iTerm.app"
+if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     set termguicolors " enable true colors
 
     colorscheme vim-material
@@ -97,7 +97,8 @@ if has("gui_running") || term_program == "iTerm.app"
 else
     set t_Co=256 " Enable 256-color-mode
     
-    let g:airline_theme = 'monokai'
+    " let g:airline_theme = 'monokai'
+    let g:airline_theme = 'bubblegum'
     colorscheme monokai
 endif    
 
@@ -168,26 +169,27 @@ let g:airline_powerline_fonts = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
+" after a re-source, fix syntax matching issues (concealing brackets):
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
+
 " This allows buffers to be hidden if you've modified a buffer.
 " This is almost a must if you wish to use buffers in this way.
 set hidden
 
 " To open a new empty buffer
-" This replaces :tabnew which I used to bind to this mapping
 nmap <leader>T :enew<cr>
-
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
-
 " Move to the previous buffer
 nmap <leader>h :bprevious<CR>
-
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <leader>bq :bp <BAR> bd #<CR>
-
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
+
 
 " Hide highlighted line underline in terminal 
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
