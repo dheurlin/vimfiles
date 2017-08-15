@@ -96,6 +96,8 @@ if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
 " For 256-color terminals
 else
     set t_Co=256 " Enable 256-color-mode
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
     
     " let g:airline_theme = 'monokai'
     let g:airline_theme = 'bubblegum'
