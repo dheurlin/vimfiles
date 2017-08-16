@@ -84,7 +84,8 @@ call plug#end()
 
 
 """ Set color theme
-
+" disable CSApprox for now, cos it breks italic fonts for some reason
+let g:CSApprox_loaded = 1
 " For gui and true color terminals (currently just iTerm)
 let term_program=$TERM_PROGRAM
 if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
@@ -99,10 +100,10 @@ else
     let &t_AB="\e[48;5;%dm"
     let &t_AF="\e[38;5;%dm"
     
-    " let g:airline_theme = 'monokai'
     let g:airline_theme = 'bubblegum'
     colorscheme monokai
 endif    
+
 
 " Set airline to use powerfonts (to support cool separators)
 let g:airline_powerline_fonts = 1
