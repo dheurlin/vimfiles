@@ -79,6 +79,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'godlygeek/csapprox'
+Plug 'terryma/vim-smooth-scroll'
 
 call plug#end()
 
@@ -206,3 +207,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+""" Configure Smooth Scrolling
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 4, 1)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 4, 1)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 4, 3)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 4, 3)<CR>
