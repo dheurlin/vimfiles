@@ -51,6 +51,19 @@ set mouse=
 """ Display line numbers
 set number
 
+" Toggle between relative and absolute line numbers
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set nornu
+    set number
+  else
+    set nonumber
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <leader>rn :call NumberToggle()<cr>
+
 """ Convert tabs to spaces, tab = 4 spaces
 """set tabstop=4
 set shiftwidth=4
