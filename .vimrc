@@ -95,16 +95,12 @@ set number
 call RelNumEnable()
 
 """ Convert tabs to spaces, tab = 4 spaces
-"""set tabstop=4
+"set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent      "Keep indentation from previous line
 set smartindent     "Automatically inserts indentation in some cases
 set cindent         "Like smartindent, but stricter and more customisable
-
-
-""" Initialize pathogen, which allows packages to be placed directly inside ~/.vim/bundle/appname/
-execute pathogen#infect()
 
 """ Specify a directory for Plug plugins
 call plug#begin('~/.vim/plugged')
