@@ -66,6 +66,7 @@ function! SetSmoothScrollFast()
 endfunction
 
 """ Setup line numbers
+
 " Toggle between relative and absolute line numbers
 " and speed up scrolling when relative, because otherwise it gets laggy
 function! RelNumDisable()
