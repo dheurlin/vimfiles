@@ -1,4 +1,4 @@
-filetype plugin indent on
+
 syntax on
 
 """"" Setup netrw to look like NERDtree
@@ -48,21 +48,50 @@ let g:NERDSpaceDelims = 1
 
 """ Disable all mouse functionality (because that's cheating)
 set mouse=
-""" Display line numbers
-set number
 
+
+""" Configure Smooth Scrolling
+function! SetSmoothScrollSlow()
+    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 4, 1)<CR>
+    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 4, 1)<CR>
+    noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 4, 3)<CR>
+    noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 4, 3)<CR>
+endfunction
+
+function! SetSmoothScrollFast()
+    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 5)<CR>
+    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 5)<CR>
+    noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 7)<CR>
+    noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 7)<CR>
+endfunction
+
+""" Setup line numbers
 " Toggle between relative and absolute line numbers
+" and speed up scrolling when relative, because otherwise it gets laggy
+function! RelNumDisable()
+    set nornu
+    call SetSmoothScrollSlow()
+endfunc
+
+function! RelNumEnable()
+    set relativenumber
+    call SetSmoothScrollFast()
+endfunc    
+
 function! NumberToggle()
   if(&relativenumber == 1)
-    set nornu
-    set number
+    call RelNumDisable()
   else
-    set nonumber
-    set relativenumber
+    call RelNumEnable()
   endif
 endfunc
 
 nnoremap <leader>rn :call NumberToggle()<cr>
+
+" Display line numbers
+set number
+" Show relative numbers by default
+call RelNumEnable()
 
 """ Convert tabs to spaces, tab = 4 spaces
 """set tabstop=4
@@ -222,8 +251,3 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 
-""" Configure Smooth Scrolling
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 4, 1)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 4, 1)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 4, 3)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 4, 3)<CR>
