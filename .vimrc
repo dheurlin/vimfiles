@@ -41,11 +41,6 @@ let g:ctrlp_cmd = 'call CtrlPCommand()'
 """ Remap the leader key (\) to ö for ease on Swedish keyboard
 let mapleader = "ö"
 
-""" NERDComment settings
-" insert space after comment delimiter
-let g:NERDSpaceDelims = 1
-
-
 """ Disable all mouse functionality (because that's cheating)
 set mouse=
 
@@ -108,7 +103,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'hzchirs/vim-material'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-syntastic/syntastic'
-Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rcabralc/monokai-airline.vim'
@@ -119,6 +113,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'godlygeek/csapprox'
 Plug 'terryma/vim-smooth-scroll'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
