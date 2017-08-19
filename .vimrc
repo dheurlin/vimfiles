@@ -141,8 +141,17 @@ else
     colorscheme monokai
 endif    
 
+""" Make iTerm automatically change to the default profile when opening vim,
+" and change back when exiting
+if term_program =="iTerm.app"
+   let curr_theme=system("~/.vim/iterm-prof.sh --get-current") 
 
-" Set airline to use powerfonts (to support cool separators)
+   autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Default"
+   autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
+   autocmd VimLeave * :! echo "Hello motherfucker"
+endif    
+
+""" Set airline to use powerfonts (to support cool separators)
 let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
@@ -198,7 +207,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline#extensions#tabline#right_sep = g:airline_right_sep
 " let g:airline#extensions#tabline#left_alt_sep = g:airline_left_alt_sep
 " let g:airline#extensions#tabline#right_alt_sep = g:airline_right_alt_sep
-"
+
 " Actually, let's use straight tabs instead
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -230,6 +239,8 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
+""" Auto-pairs config
+let g:AutoPairsShortcutFastWrap='' "auto-pairs breaks å for some reason. This fixes it
 
 " Hide highlighted line underline in terminal 
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
