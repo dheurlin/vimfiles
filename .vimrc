@@ -89,14 +89,6 @@ set number
 " Show relative numbers by default
 call RelNumEnable()
 
-""" Convert tabs to spaces, tab = 4 spaces
-"set tabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent      "Keep indentation from previous line
-set smartindent     "Automatically inserts indentation in some cases
-set cindent         "Like smartindent, but stricter and more customisable
-
 """ Specify a directory for Plug plugins
 call plug#begin('~/.vim/plugged')
 
@@ -116,6 +108,7 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'vim-scripts/applescript.vim'
 
 call plug#end()
 
@@ -150,6 +143,15 @@ if term_program =="iTerm.app"
    autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
    autocmd VimLeave * :! echo "Hello motherfucker"
 endif    
+
+
+""" Convert tabs to spaces, tab = 4 spaces
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent      "Keep indentation from previous line
+" set smartindent     "Automatically inserts indentation in some cases
+set cindent         "Like smartindent, but stricter and more customisable
 
 """ Set airline to use powerfonts (to support cool separators)
 let g:airline_powerline_fonts = 1
