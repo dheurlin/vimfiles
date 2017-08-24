@@ -101,7 +101,9 @@ Plug 'rcabralc/monokai-airline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
+Plug 'chriskempson/base16-vim'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'godlygeek/csapprox'
 Plug 'terryma/vim-smooth-scroll'
@@ -109,6 +111,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/applescript.vim'
+Plug 'godlygeek/tabular'
+Plug 'python-mode/python-mode'
 
 call plug#end()
 
@@ -120,9 +124,15 @@ let g:CSApprox_loaded = 1
 let term_program=$TERM_PROGRAM
 if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     set termguicolors " enable true colors
+    
+    colo base16-default-dark
+    let g:airline_theme = 'base16_default'
 
-    colorscheme vim-material
-    let g:airline_theme = 'material'
+    " Toggle between light and dark theme using leader B
+    nnoremap  <leader>B :<c-u>exe "colors" (g:colors_name =~# "dark"
+    \ ? substitute(g:colors_name, 'dark', 'light', '')
+    \ : substitute(g:colors_name, 'light', 'dark', '')
+    \ )<cr>
 
 " For 256-color terminals
 else
@@ -134,12 +144,12 @@ else
     colorscheme monokai
 endif    
 
-""" Make iTerm automatically change to the default profile when opening vim,
+""" Make iTerm automatically change to the 'Vim' profile when opening vim,
 " and change back when exiting
 if term_program =="iTerm.app"
    let curr_theme=system("~/.vim/iterm-prof.sh --get-current") 
 
-   autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Default"
+   autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Vim"
    autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
    autocmd VimLeave * :! echo "Hello motherfucker"
 endif    
@@ -149,9 +159,27 @@ endif
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set autoindent      "Keep indentation from previous line
-" set smartindent     "Automatically inserts indentation in some cases
-set cindent         "Like smartindent, but stricter and more customisable
+set autoindent  "Keep indentation from previous line
+filetype plugin indent on
+" set smartindent "Automatically inserts indentation in some cases
+" set cindent     "Like smartindent, but stricter and more customisable
+" " dont remove indentation when pressing #  
+" inoremap # X#
+
+""" Comments
+" AppleScript should use # as comment style
+autocmd FileType applescript :setlocal commentstring=#\ %s
+
+""" Folding
+" set folds unfolded by default
+au BufRead * normal zR
+
+""" Python mode
+" only show documentation when autocompleting
+let g:pymode_doc = 0
+" remove doc after autocompletion is done
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 """ Set airline to use powerfonts (to support cool separators)
 let g:airline_powerline_fonts = 1
