@@ -1,4 +1,4 @@
-
+set encoding=utf-8
 syntax on
 
 """"" Setup netrw to look like NERDtree
@@ -118,12 +118,6 @@ call plug#end()
 
 
 """ Set color theme
-" Some things break on remote machines (cuz old vim and stuff)
-let g:remoteSession = ($STY == "")
-if g:remoteSession
-    let g:webdevicons_enable = 0
-endif
-
 " disable CSApprox for now, cos it breks italic fonts for some reason
 let g:CSApprox_loaded = 1
 " For gui and true color terminals (currently just iTerm)
