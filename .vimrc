@@ -128,7 +128,13 @@ if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     colo base16-default-dark
     let g:airline_theme = 'base16_default'
 
-    " Toggle between light and dark theme using leader B
+    " use italic comments
+    highlight Comment cterm=italic gui=italic
+    " set line numbers bg to bg color
+    let bgc=synIDattr(hlID("Normal"), "bg")
+    execute 'hi LineNr guibg='.bgc
+        
+    " Toggle between light jnd dark theme using leader B
     nnoremap  <leader>B :<c-u>exe "colors" (g:colors_name =~# "dark"
     \ ? substitute(g:colors_name, 'dark', 'light', '')
     \ : substitute(g:colors_name, 'light', 'dark', '')
