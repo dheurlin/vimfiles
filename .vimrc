@@ -38,6 +38,10 @@ endfunction
 
 let g:ctrlp_cmd = 'call CtrlPCommand()'
 
+" make it show hidden files
+let g:ctrlp_show_hidden = 1
+
+
 """ Remap the leader key (\) to ö for ease on Swedish keyboard
 let mapleader = "ö"
 
@@ -118,13 +122,21 @@ call plug#end()
 
 
 """ Set color theme
+
 " disable CSApprox for now, cos it breks italic fonts for some reason
 let g:CSApprox_loaded = 1
+
 " For gui and true color terminals (currently just iTerm)
 let term_program=$TERM_PROGRAM
+
 if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     set termguicolors " enable true colors
     
+    let g:my_colo_dark    = 'base16-default-dark'
+    let g:my_colo_light   = 'base16-default-light'
+    let g:my_airline_dark  = 'base16_default'
+    let g:my_airline_light = 'papercolor'
+
     colo base16-default-dark
     let g:airline_theme = 'base16_default'
 
@@ -134,12 +146,6 @@ if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     let bgc=synIDattr(hlID("Normal"), "bg")
     execute 'hi LineNr guibg='.bgc
         
-    " Toggle between light jnd dark theme using leader B
-    nnoremap  <leader>B :<c-u>exe "colors" (g:colors_name =~# "dark"
-    \ ? substitute(g:colors_name, 'dark', 'light', '')
-    \ : substitute(g:colors_name, 'light', 'dark', '')
-    \ )<cr>
-
 " For 256-color terminals
 else
     set t_Co=256 " Enable 256-color-mode
@@ -149,6 +155,31 @@ else
     let g:airline_theme = 'bubblegum'
     colorscheme monokai
 endif    
+
+" toggle between dark and light themes
+function! ToggleLightDarkTheme()
+
+    " change main colors:
+    if (exists('g:my_colo_dark') && exists('g:colors_name'))
+        if g:colors_name == g:my_colo_dark
+            exe 'colo '.g:my_colo_light
+        else
+            exe 'colo '.g:my_colo_dark
+        endif
+    endif
+
+    " change airline theme
+    if (exists('g:my_airline_dark') && exists('g:airline_theme'))
+        if g:airline_theme == g:my_airline_dark
+            exe 'AirlineTheme '.g:my_airline_light
+        else
+            exe 'AirlineTheme '.g:my_airline_dark
+        endif
+    endif
+   
+endfunction
+
+nnoremap <leader>b :call ToggleLightDarkTheme()<cr>
 
 """ Make iTerm automatically change to the 'Vim' profile when opening vim,
 " and change back when exiting
