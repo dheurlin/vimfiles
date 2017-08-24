@@ -89,7 +89,7 @@ set number
 " Show relative numbers by default
 call RelNumEnable()
 
-""" Specify a directory for Plug plugins
+""" Plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'hzchirs/vim-material'
@@ -99,9 +99,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rcabralc/monokai-airline.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
-" Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -113,11 +112,18 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/applescript.vim'
 Plug 'godlygeek/tabular'
 Plug 'python-mode/python-mode'
+Plug 'Raimondi/delimitMate'
 
 call plug#end()
 
 
 """ Set color theme
+" Some things break on remote machines (cuz old vim and stuff)
+let g:remoteSession = ($STY == "")
+if g:remoteSession
+    let g:webdevicons_enable = 0
+endif
+
 " disable CSApprox for now, cos it breks italic fonts for some reason
 let g:CSApprox_loaded = 1
 " For gui and true color terminals (currently just iTerm)
@@ -167,10 +173,6 @@ set shiftwidth=4
 set expandtab
 set autoindent  "Keep indentation from previous line
 filetype plugin indent on
-" set smartindent "Automatically inserts indentation in some cases
-" set cindent     "Like smartindent, but stricter and more customisable
-" " dont remove indentation when pressing #  
-" inoremap # X#
 
 """ Comments
 " AppleScript should use # as comment style
@@ -232,19 +234,12 @@ let g:airline_right_alt_sep = '⮃'
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
-" Show just the filename
 
 " Show just the filename if it's unique, otherwise add path to make it unique
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-" Set the separators to use 1337 h4xx0rz arrows
-" let g:airline#extensions#tabline#left_sep = g:airline_left_sep
-" let g:airline#extensions#tabline#right_sep = g:airline_right_sep
-" let g:airline#extensions#tabline#left_alt_sep = g:airline_left_alt_sep
-" let g:airline#extensions#tabline#right_alt_sep = g:airline_right_alt_sep
-
-" Actually, let's use straight tabs instead
+" Make it use straight tabs
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
@@ -274,9 +269,6 @@ nmap <leader>h :bprevious<CR>
 nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
-
-""" Auto-pairs config
-let g:AutoPairsShortcutFastWrap='' "auto-pairs breaks å for some reason. This fixes it
 
 " Hide highlighted line underline in terminal 
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
