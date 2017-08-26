@@ -1,6 +1,14 @@
 set encoding=utf-8
 syntax on
 
+" TEST, find out what syntax group we're in
+" augroup temporary_test
+"       autocmd CursorMoved <buffer>
+"       	\ echo map(synstack(line('.'), col('.')),
+"       	\ 'synIDattr(v:val, "name")')
+" augroup END
+
+
 """"" Setup netrw to look like NERDtree
 
 let g:netrw_banner = 0
@@ -103,7 +111,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rcabralc/monokai-airline.vim'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
@@ -112,6 +119,7 @@ Plug 'godlygeek/csapprox'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+Plug 'suy/vim-context-commentstring' "Makes vim commentary change comment type when language changes within file
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/applescript.vim'
 Plug 'godlygeek/tabular'
@@ -188,7 +196,6 @@ if term_program =="iTerm.app"
 
    autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Vim"
    autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
-   autocmd VimLeave * :! echo "Hello motherfucker"
 endif    
 
 
@@ -200,8 +207,37 @@ set autoindent  "Keep indentation from previous line
 filetype plugin indent on
 
 """ Comments
+
 " AppleScript should use # as comment style
 autocmd FileType applescript :setlocal commentstring=#\ %s
+
+" Php should use // as comment style, but html in php files should be
+" commented like html. To make this happe, we set the default 
+" comment style in php to the html style, and set the comment
+" style of 'phpRegion' to the normal php style
+autocmd FileType php :setlocal commentstring=<!--%s-->
+
+if !exists("g:context#commentstring#table")
+    let g:context#commentstring#table = {}
+endif
+
+let g:context#commentstring#table.php = {
+    \ 'phpRegion' : '//  %s',
+    \ }
+
+" Setup context sensitive comments for other languages
+let g:context#commentstring#table.vim = {
+            \ 'vimLuaRegion'     : '--%s',
+            \ 'vimPerlRegion'    : '#%s',
+            \ 'vimPythonRegion'  : '#%s',
+            \}
+
+let g:context#commentstring#table.html = {
+            \ 'javaScript'  : '//%s',
+            \ 'cssStyle'    : '/*%s*/',
+            \}
+
+let g:context#commentstring#table.xhtml = g:context#commentstring#table.html
 
 """ Folding
 " set folds unfolded by default
@@ -213,6 +249,10 @@ let g:pymode_doc = 0
 " remove doc after autocompletion is done
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+
+""" Configure delimitMate (auto pairs)
+let delimitMate_expand_cr = 1
 
 """ Set airline to use powerfonts (to support cool separators)
 let g:airline_powerline_fonts = 1
