@@ -68,10 +68,10 @@ function! SetSmoothScrollSlow()
 endfunction
 
 function! SetSmoothScrollFast()
-    noremap <silent> <c-u> :call smooth_scroll#up   (&scroll   , 0 , 3)<CR>
-    noremap <silent> <c-d> :call smooth_scroll#down (&scroll   , 0 , 3)<CR>
-    noremap <silent> <c-b> :call smooth_scroll#up   (&scroll*2 , 0 , 5)<CR>
-    noremap <silent> <c-f> :call smooth_scroll#down (&scroll*2 , 0 , 5)<CR>
+    noremap <silent> <c-u> :call smooth_scroll#up   (&scroll   , 0 , 4)<CR>
+    noremap <silent> <c-d> :call smooth_scroll#down (&scroll   , 0 , 4)<CR>
+    noremap <silent> <c-b> :call smooth_scroll#up   (&scroll*2 , 0 , 6)<CR>
+    noremap <silent> <c-f> :call smooth_scroll#down (&scroll*2 , 0 , 6)<CR>
 endfunction
 
 """ Setup line numbers
@@ -127,6 +127,7 @@ Plug 'vim-scripts/applescript.vim'
 Plug 'godlygeek/tabular'
 Plug 'python-mode/python-mode'
 Plug 'Raimondi/delimitMate'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
@@ -252,7 +253,23 @@ let g:pymode_doc = 0
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+""" Configure Markdown Mode
 
+" Add syntax highlighting for LaTeX
+let g:vim_markdown_math = 1
+" also make it work for \begin{...} ... \end{...} blocks
+autocmd FileType markdown 
+    \ syn region mkdMath start="\\begin{.*}" end="\\end{.*}" contains=@tex keepend
+
+" Command for compiling current file using pandoc
+function! CompMD()
+    silent  exec "! (pandoc -o '%:t'.pdf '%:t'&) > /dev/null" 
+    redraw!
+endfunction
+
+autocmd FileType markdown command! CompMD call CompMD()
+
+    
 """ Configure delimitMate (auto pairs)
 let delimitMate_expand_cr = 1
 
