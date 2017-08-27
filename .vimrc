@@ -246,7 +246,9 @@ let g:context#commentstring#table.xhtml = g:context#commentstring#table.html
 " set folds unfolded by default
 au BufRead * normal zR
 
+
 """ Python mode
+
 " only show documentation when autocompleting
 let g:pymode_doc = 0
 " remove doc after autocompletion is done
@@ -261,13 +263,18 @@ let g:vim_markdown_math = 1
 autocmd FileType markdown 
     \ syn region mkdMath start="\\begin{.*}" end="\\end{.*}" contains=@tex keepend
 
-" Command for compiling current file using pandoc
+" Command for compiling current file using pandoc, without 
+" printing stuff to the terminal
 function! CompMD()
-    silent  exec "! (pandoc -o '%:t'.pdf '%:t'&) > /dev/null" 
-    redraw!
+    if &filetype == 'markdown'
+        silent  exec "! (pandoc -o '%:t'.pdf '%:t'&) > /dev/null" 
+        redraw!
+    else
+        echo "Not a markdown file!"
+    endif
 endfunction
 
-autocmd FileType markdown command! CompMD call CompMD()
+command! CompMD call CompMD()
 
     
 """ Configure delimitMate (auto pairs)
