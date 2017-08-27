@@ -8,6 +8,8 @@ syntax on
 "       	\ 'synIDattr(v:val, "name")')
 " augroup END
 
+""" Shortcut to edit .vimrc
+command! Vrc edit ~/.vimrc
 
 """"" Setup netrw to look like NERDtree
 
@@ -66,10 +68,10 @@ function! SetSmoothScrollSlow()
 endfunction
 
 function! SetSmoothScrollFast()
-    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 5)<CR>
-    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 5)<CR>
-    noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 7)<CR>
-    noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 7)<CR>
+    noremap <silent> <c-u> :call smooth_scroll#up   (&scroll   , 0 , 3)<CR>
+    noremap <silent> <c-d> :call smooth_scroll#down (&scroll   , 0 , 3)<CR>
+    noremap <silent> <c-b> :call smooth_scroll#up   (&scroll*2 , 0 , 5)<CR>
+    noremap <silent> <c-f> :call smooth_scroll#down (&scroll*2 , 0 , 5)<CR>
 endfunction
 
 """ Setup line numbers
