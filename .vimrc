@@ -256,7 +256,15 @@ let g:pymode_doc = 0
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+""" Setup spell checking
+command! SpellEN setlocal spell spelllang=en_us
+command! SpellSW setlocal spell spelllang=sv
+command! NoSpell setlocal nospell
+
 """ Configure Markdown Mode
+
+" Activate english spell checker
+autocmd FileType markdown SpellEN
 
 " Add syntax highlighting for LaTeX
 let g:vim_markdown_math = 1
