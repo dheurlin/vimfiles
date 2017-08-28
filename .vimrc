@@ -275,15 +275,11 @@ autocmd FileType markdown
 " Command for compiling current file using pandoc, without 
 " printing stuff to the terminal
 function! CompMD()
-    if &filetype == 'markdown'
-        silent  exec "! (pandoc -o '%:t'.pdf '%:t'&) > /dev/null" 
-        redraw!
-    else
-        echo "Not a markdown file!"
-    endif
+    silent  exec "! (pandoc -o '%:t'.pdf '%:t'&) > /dev/null" 
+    redraw!
 endfunction
 
-command! CompMD call CompMD()
+autocmd FileType markdown command! -buffer CompMD call CompMD()
 
 " Key binding for inserting link
 autocmd FileType markdown  nnoremap <buffer> <c-i>l i[]()<esc>F[a
