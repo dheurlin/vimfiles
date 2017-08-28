@@ -204,10 +204,12 @@ endif
 
 """ Convert tabs to spaces, tab = 4 spaces
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent  "Keep indentation from previous line
 filetype plugin indent on
+
 
 """ Comments
 
@@ -275,6 +277,14 @@ function! CompMD()
 endfunction
 
 command! CompMD call CompMD()
+
+" Key binding for inserting link
+autocmd FileType markdown  nnoremap <buffer> <c-i>l i[]()<esc>F[a
+
+" Key binding for making bold text
+
+" TODO: Command for inserting image from url
+" TODO: Make it compile automatically when I save
 
     
 """ Configure delimitMate (auto pairs)
