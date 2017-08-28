@@ -144,19 +144,18 @@ if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     set termguicolors " enable true colors
     
     let g:my_colo_dark    = 'base16-default-dark'
-    let g:my_colo_light   = 'base16-default-light'
+    let g:my_colo_light   = 'base16-github'
     let g:my_airline_dark  = 'base16_default'
     let g:my_airline_light = 'papercolor'
+
+    " Use italic comments
+    autocmd Colorscheme * highlight Comment cterm=italic gui=italic
+    " Set line nr background to background color of text
+    autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
 
     colo base16-default-dark
     let g:airline_theme = 'base16_default'
 
-    " use italic comments
-    highlight Comment cterm=italic gui=italic
-    " set line numbers bg to bg color
-    let bgc=synIDattr(hlID("Normal"), "bg")
-    execute 'hi LineNr guibg='.bgc
-        
 " For 256-color terminals
 else
     set t_Co=256 " Enable 256-color-mode
@@ -187,7 +186,7 @@ function! ToggleLightDarkTheme()
             exe 'AirlineTheme '.g:my_airline_dark
         endif
     endif
-   
+
 endfunction
 
 nnoremap <leader>b :call ToggleLightDarkTheme()<cr>
