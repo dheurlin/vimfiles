@@ -275,11 +275,19 @@ autocmd FileType markdown
 " Command for compiling current file using pandoc, without 
 " printing stuff to the terminal
 function! CompMD()
-    silent  exec "! (pandoc -o '%:t'.pdf '%:t'&) > /dev/null" 
+    silent exec "! (~/.vim/md-make.sh '%:p'&) > /dev/null"
     redraw!
 endfunction
 
 autocmd FileType markdown command! -buffer CompMD call CompMD()
+
+" Command for opening the pdf of the current file in zathura
+function! OpenPDF()
+    silent exec "! (zathura '%:p'.pdf &) > /dev/null"
+    redraw!
+endfunction
+
+autocmd FileType markdown command! -buffer OpenPDF call OpenPDF()
 
 " Key binding for inserting link
 autocmd FileType markdown  nnoremap <buffer> <c-i>l i[]()<esc>F[a
