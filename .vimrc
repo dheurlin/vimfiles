@@ -281,9 +281,10 @@ command! CompMD call CompMD()
 " Key binding for inserting link
 autocmd FileType markdown  nnoremap <buffer> <c-i>l i[]()<esc>F[a
 
-" Key binding for making bold text
+" Command for inserting image from link
+autocmd FileType markdown command!  -buffer -nargs=1 -complete=file
+     \ ImgFromLink normal "='![]('.<q-args>.')'<c-m>P
 
-" TODO: Command for inserting image from url
 " TODO: Make it compile automatically when I save
 
     
