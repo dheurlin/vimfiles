@@ -263,7 +263,6 @@ command! NoSpell setlocal nospell
 
 """ Configure Markdown Mode
 
-" Most config is done in .vim/ftplugin/markdown.vim
 
 " Define extension that specifies that the file is a pandoc markdown.
 " Only these will be auto-compiled to pdf when we save
@@ -271,6 +270,8 @@ augroup filetypedetect
     au BufRead,BufNewFile *.pmd setfiletype markdown
     " associate *.pmd with markdown filetype
 augroup END
+
+source ~/.vim/syntax-specific/markdown.vim
 
     
 """ Configure delimitMate (auto pairs)
