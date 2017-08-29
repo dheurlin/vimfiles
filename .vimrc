@@ -263,6 +263,13 @@ command! NoSpell setlocal nospell
 
 """ Configure Markdown Mode
 
+" Define extension that specifies that the file is a pandoc markdown.
+" Only these will be auto-compiled to pdf when we save
+augroup filetypedetect
+    au BufRead,BufNewFile *.pmd setfiletype markdown
+    " associate *.pmd with markdown filetype
+augroup END
+
 " Activate english spell checker
 autocmd FileType markdown SpellEN
 
@@ -282,7 +289,7 @@ endfunction
 autocmd FileType markdown command! -buffer CompMD call CompMD()
 
 " Make it automatically compile when we save the buffer
-autocmd BufWritePost *.md CompMD
+autocmd BufWritePost *.pmd CompMD
 
 " Command for opening the pdf of the current file in zathura
 function! OpenPDF()
