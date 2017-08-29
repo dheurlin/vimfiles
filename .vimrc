@@ -283,7 +283,8 @@ autocmd FileType markdown command! -buffer CompMD call CompMD()
 
 " Command for opening the pdf of the current file in zathura
 function! OpenPDF()
-    silent exec "! (zathura '%:p'.pdf &) > /dev/null"
+    " silent exec "! (zathura '%:p'.pdf &) > /dev/null"
+    silent exec "! (~/.vim/open-note-setup.sh '%:p'.pdf &) > /dev/null"
     redraw!
 endfunction
 
