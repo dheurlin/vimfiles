@@ -6,4 +6,4 @@ TARGET="$1"
 pandoc -o "$TARGET.pdf" --template="/Users/$USER/Dropbox/pandoc_templates/notes.latex" "$TARGET"
 
 # Make zathura refresh
-killall -HUP zathura
+killall -HUP zathura &> /dev/null
