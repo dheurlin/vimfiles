@@ -281,6 +281,9 @@ endfunction
 
 autocmd FileType markdown command! -buffer CompMD call CompMD()
 
+" Make it automatically compile when we save the buffer
+autocmd BufWritePost *.md CompMD
+
 " Command for opening the pdf of the current file in zathura
 function! OpenPDF()
     " silent exec "! (zathura '%:p'.pdf &) > /dev/null"
