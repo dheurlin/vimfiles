@@ -263,51 +263,14 @@ command! NoSpell setlocal nospell
 
 """ Configure Markdown Mode
 
+" Most config is done in .vim/ftplugin/markdown.vim
+
 " Define extension that specifies that the file is a pandoc markdown.
 " Only these will be auto-compiled to pdf when we save
 augroup filetypedetect
     au BufRead,BufNewFile *.pmd setfiletype markdown
     " associate *.pmd with markdown filetype
 augroup END
-
-" Activate english spell checker
-autocmd FileType markdown SpellEN
-
-" Add syntax highlighting for LaTeX
-let g:vim_markdown_math = 1
-" also make it work for \begin{...} ... \end{...} blocks
-autocmd FileType markdown 
-    \ syn region mkdMath start="\\begin{.*}" end="\\end{.*}" contains=@tex keepend
-
-" Command for compiling current file using pandoc, without 
-" printing stuff to the terminal
-function! CompMD()
-    silent exec "! (~/.vim/md-make.sh '%:p'&) > /dev/null"
-    redraw!
-endfunction
-
-autocmd FileType markdown command! -buffer CompMD call CompMD()
-
-" Make it automatically compile when we save the buffer
-autocmd BufWritePost *.pmd CompMD
-
-" Command for opening the pdf of the current file in zathura
-function! OpenPDF()
-    " silent exec "! (zathura '%:p'.pdf &) > /dev/null"
-    silent exec "! (~/.vim/open-note-setup.sh '%:p'.pdf &) > /dev/null"
-    redraw!
-endfunction
-
-autocmd FileType markdown command! -buffer OpenPDF call OpenPDF()
-
-" Key binding for inserting link
-autocmd FileType markdown  nnoremap <buffer> <c-i>l i[]()<esc>F[a
-
-" Command for inserting image from link
-autocmd FileType markdown command!  -buffer -nargs=1 -complete=file
-     \ ImgFromLink normal "='![]('.<q-args>.')'<c-m>P
-
-" TODO: Make it compile automatically when I save
 
     
 """ Configure delimitMate (auto pairs)
