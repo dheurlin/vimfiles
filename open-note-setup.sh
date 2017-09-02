@@ -2,33 +2,24 @@
 
 # Opens the pdf version of the current md file,
 # and positions the windows so that the terminal takes up
-# the left half of the screen, and mupdf the right half
+# the left half of the screen, and zathura the right half
 
-# Open the file in mupdf and wait for it to start
-(mupdf-gl "$1" &)
-# until pids=$(pgrep zathura)
-until pids=$(pgrep mupdf-gl)
+# Start by moving the terminal window out of the way by scaling it down
+osascript /Users/danielheurlin/Dropbox/coding\ stuff/applescript/resize-iterm.scpt 0.6
+
+# Open the file in zathura, and wait for it to start.
+# the mouse click-and-drag simulator cliclick
+(zathura "$1" &)
+until pids=$(pgrep zathura)
 do 
     sleep 1
 done
 
-# mupdf has now started. Here's the applescript to position the windows
+# zathura has now started. Let's wait a bit longer for it to get comfy
+sleep 3
+# It should be open by now, so let's drag the window into place
+cliclick "m:300,200" "c:+0,23" "w:200" "dd:+0,+0" "du:+640,+0"
 
-osascript <<END
-tell application "System Events"
-
-	set m to the first process whose name is "mupdf-gl"
-
-	tell application "Finder" to set ssize to bounds of window of desktop
-
-	tell the first window of m
-		set its position to {(item 3 of ssize) / 2, 21}
-		set its size to {(item 3 of ssize) / 2, (item 4 of ssize) - 21}
-	end tell
-end tell
-
-tell application "iTerm" 
-    set the bounds of its first window to {0,21,(item 3 of ssize) / 2, (item 4 of ssize)}
-end tell
-END
-
+# Now let's put the terminal window on the left hand side
+cliclick "c:600,400"
+osascript /Users/danielheurlin/Dropbox/coding\ stuff/applescript/resize-iterm.scpt l 
