@@ -243,11 +243,6 @@ let g:context#commentstring#table.html = {
 
 let g:context#commentstring#table.xhtml = g:context#commentstring#table.html
 
-""" Folding
-" set folds unfolded by default
-au BufRead * normal zR
-
-
 """ Python mode
 
 " only show documentation when autocompleting
@@ -272,6 +267,11 @@ augroup filetypedetect
 augroup END
 
 source ~/.vim/syntax-specific/markdown.vim
+
+""" Folding
+" set folds unfolded by default
+au BufRead * normal zR
+
 
     
 """ Configure delimitMate (auto pairs)
