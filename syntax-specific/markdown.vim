@@ -1,5 +1,5 @@
 " Activate english spell checker
-SpellEN
+autocmd FileType markdown SpellEN
 
 " Add syntax highlighting for LaTeX
 let g:vim_markdown_math = 1
@@ -33,7 +33,21 @@ autocmd FileType markdown nnoremap <buffer> <c-i>l i[]()<esc>F[a
 " Command for inserting image from link
 autocmd FileType markdown command! -buffer -nargs=1 -complete=file ImgFromLink normal "='![]('.<q-args>.')'<c-m>PF[
 
+" autocmd FileType markdown command! -buffer -nargs=1 -complete=file 
+    " \ FigFromLink normal "='\begin{figure}[h]\\t\includegraphics[]{'.<q-args>.'}\t\caption{}\t\end{figure}'<c-m>Pk
+
 " Rotates an image. This requires that the image be included using
 " inline LaTeX, so if it is not already, we convert it
+" function! RotImg(deg)
+"     " If we dont already haev the inline LaTeX
+"     let line=getline('.')
+"     if line =~ '!\[.*\]\(.*\)'
+"        s /!\[(.*)\]\((.*)\)/hej \1 och \2/ 
+"     else
+"         echo "fuck you"
+"     endif
+" endfunction
 
+
+" " ![hej, hag heter kuk](lslsls)
     
