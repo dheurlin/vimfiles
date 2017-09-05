@@ -13,11 +13,11 @@ command! Vrc edit ~/.vimrc
 
 """"" Setup netrw to look like NERDtree
 
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_banner       = 0
+let g:netrw_liststyle    = 3
 let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
+let g:netrw_altv         = 1
+let g:netrw_winsize      = 25
 
 
 """ NERDtree settings
@@ -61,10 +61,10 @@ set mouse=
 
 """ Configure Smooth Scrolling
 function! SetSmoothScrollSlow()
-    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 4, 1)<CR>
-    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 4, 1)<CR>
-    noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 4, 3)<CR>
-    noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 4, 3)<CR>
+    noremap <silent> <c-u> :call smooth_scroll#up   (&scroll   , 4 , 1)<CR>
+    noremap <silent> <c-d> :call smooth_scroll#down (&scroll   , 4 , 1)<CR>
+    noremap <silent> <c-b> :call smooth_scroll#up   (&scroll*2 , 4 , 3)<CR>
+    noremap <silent> <c-f> :call smooth_scroll#down (&scroll*2 , 4 , 3)<CR>
 endfunction
 
 function! SetSmoothScrollFast()
@@ -309,10 +309,10 @@ let g:airline_symbols.linenr = ''
 
 " old vim-powerline symbols
 " (The ones that aren't commented look better than the PL ones)
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
+" let g:airline_left_sep = '⮀'
+" let g:airline_left_alt_sep = '⮁'
+" let g:airline_right_sep = '⮂'
+" let g:airline_right_alt_sep = '⮃'
 " let g:airline_symbols.branch = '⭠'
 " let g:airline_symbols.readonly = '⭤'
 " let g:airline_symbols.linenr = '⭡'
