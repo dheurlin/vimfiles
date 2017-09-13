@@ -1,6 +1,9 @@
 " Activate english spell checker
 autocmd FileType markdown SpellEN
 
+" do nice line breaks (don't break mid word)
+autocmd FileType markdown set wrap linebreak nolist
+
 " Add syntax highlighting for LaTeX
 let g:vim_markdown_math = 1
 

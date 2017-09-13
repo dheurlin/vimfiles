@@ -143,8 +143,8 @@ let term_program=$TERM_PROGRAM
 if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     set termguicolors " enable true colors
     
-    let g:my_colo_dark    = 'base16-default-dark'
-    let g:my_colo_light   = 'base16-github'
+    let g:my_colo_dark     = 'base16-default-dark'
+    let g:my_colo_light    = 'base16-github'
     let g:my_airline_dark  = 'base16_default'
     let g:my_airline_light = 'papercolor'
 
@@ -209,6 +209,10 @@ set expandtab
 set autoindent  "Keep indentation from previous line
 filetype plugin indent on
 
+""" Make line wrapping be nice
+if has("patch-7.4.354")
+    set breakindent
+endif
 
 """ Comments
 
@@ -271,7 +275,6 @@ source ~/.vim/syntax-specific/markdown.vim
 """ Folding
 " set folds unfolded by default
 au BufRead * normal zR
-
 
     
 """ Configure delimitMate (auto pairs)
@@ -386,5 +389,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-
+let g:syntastic_java_javac_config_file_enabled = 1
