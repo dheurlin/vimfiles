@@ -4,8 +4,8 @@ syntax on
 " TEST, find out what syntax group we're in
 " augroup temporary_test
 "       autocmd CursorMoved <buffer>
-"       	\ echo map(synstack(line('.'), col('.')),
-"       	\ 'synIDattr(v:val, "name")')
+"           \ echo map(synstack(line('.'), col('.')),
+"           \ 'synIDattr(v:val, "name")')
 " augroup END
 
 """ Shortcut to edit .vimrc
@@ -143,18 +143,20 @@ let term_program=$TERM_PROGRAM
 if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     set termguicolors " enable true colors
     
-    let g:my_colo_dark     = 'base16-default-dark'
-    let g:my_colo_light    = 'base16-github'
-    let g:my_airline_dark  = 'base16_default'
-    let g:my_airline_light = 'papercolor'
+    " let g:my_colo_dark    = 'base16-default-dark'
+    let g:my_colo_dark      = 'monokai'
+    let g:my_colo_light     = 'base16-github'
+    " let g:my_airline_dark = 'base16_default'
+    let g:my_airline_dark   = 'monokai'
+    let g:my_airline_light  = 'papercolor'
 
     " Use italic comments
     autocmd Colorscheme * highlight Comment cterm=italic gui=italic
     " Set line nr background to background color of text
     autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
 
-    colo base16-default-dark
-    let g:airline_theme = 'base16_default'
+    colo monokai
+    let g:airline_theme = 'monokai'
 
 " For 256-color terminals
 else
@@ -379,6 +381,9 @@ nmap <leader>bl :ls<CR>
 
 " Hide highlighted line underline in terminal 
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
+
+" Set lazyredraw, makes vim less laggy for some reason
+set lazyredraw
 
 """ Setup syntastic options for syntax checking
 set statusline+=%#warningmsg#
