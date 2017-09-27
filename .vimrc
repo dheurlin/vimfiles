@@ -164,7 +164,7 @@ else
     let &t_AB="\e[48;5;%dm"
     let &t_AF="\e[38;5;%dm"
     
-    let g:airline_theme = 'bubblegum'
+    let g:airline_theme = 'monokai'
     colorscheme monokai
 endif    
 
