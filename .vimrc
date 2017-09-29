@@ -221,6 +221,9 @@ endif
 " AppleScript should use # as comment style
 autocmd FileType applescript :setlocal commentstring=#\ %s
 
+" Matlab uses %
+autocmd FileType matlab setlocal commentstring=\%\ %s
+
 " Php should use // as comment style, but html in php files should be
 " commented like html. To make this happe, we set the default 
 " comment style in php to the html style, and set the comment
