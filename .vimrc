@@ -141,6 +141,9 @@ let g:CSApprox_loaded = 1
 let term_program=$TERM_PROGRAM
 
 if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
+
+    set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
+    set t_8b=[48;2;%lu;%lu;%lum  " Ditto
     set termguicolors " enable true colors
     
     " let g:my_colo_dark    = 'base16-default-dark'
@@ -151,7 +154,7 @@ if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     let g:my_airline_light  = 'papercolor'
 
     " Use italic comments
-    autocmd Colorscheme * highlight Comment cterm=italic gui=italic
+    " autocmd Colorscheme * highlight Comment cterm=italic gui=italic
     " Set line nr background to background color of text
     autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
 
