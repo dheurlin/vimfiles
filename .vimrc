@@ -11,6 +11,10 @@ syntax on
 """ Shortcut to edit .vimrc
 command! Vrc edit ~/.vimrc
 
+""" map :W to save, to avoid the situation where you try to save but
+""" accedently hold shift
+command! W w
+
 """"" Setup netrw to look like NERDtree
 
 let g:netrw_banner       = 0
@@ -128,6 +132,7 @@ Plug 'godlygeek/tabular'
 Plug 'python-mode/python-mode'
 Plug 'Raimondi/delimitMate'
 Plug 'plasticboy/vim-markdown'
+Plug 'lervag/vimtex'
 
 call plug#end()
 
