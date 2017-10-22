@@ -12,6 +12,10 @@ syntax on
 """ Shortcut to edit .vimrc
 command! Vrc edit ~/.vimrc
 
+""" map :W to save, to avoid the situation where you try to save but
+""" accedently hold shift
+command! W w
+
 """"" Setup netrw to look like NERDtree
 
 let g:netrw_banner       = 0
@@ -129,6 +133,7 @@ Plug 'godlygeek/tabular'
 Plug 'python-mode/python-mode'
 Plug 'Raimondi/delimitMate'
 Plug 'plasticboy/vim-markdown'
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -142,6 +147,9 @@ let g:CSApprox_loaded = 1
 let term_program=$TERM_PROGRAM
 
 if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
+
+    set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
+    set t_8b=[48;2;%lu;%lu;%lum  " Ditto
     set termguicolors " enable true colors
     
     " let g:my_colo_dark    = 'base16-default-dark'
@@ -152,7 +160,7 @@ if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     let g:my_airline_light  = 'papercolor'
 
     " Use italic comments
-    autocmd Colorscheme * highlight Comment cterm=italic gui=italic
+    " autocmd Colorscheme * highlight Comment cterm=italic gui=italic
     " Set line nr background to background color of text
     autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
 
