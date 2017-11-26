@@ -63,6 +63,24 @@ let mapleader = "ö"
 set mouse=
 
 
+""" Highlight trailing whitespace
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred guibg=darkred
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
+
+""" Setup spell checking
+command! SpellEN setlocal spell spelllang=en_us
+command! SpellSW setlocal spell spelllang=sv
+command! NoSpell setlocal nospell
+autocmd ColorScheme * highlight clear SpellBad
+autocmd ColorScheme * highlight SpellBad ctermfg=09 guifg=#ff0000
+autocmd ColorScheme * highlight clear SpellCap
+autocmd ColorScheme * highlight SpellCap ctermfg=10 guifg=#00ff00
+autocmd ColorScheme * highlight clear SpellRare
+autocmd ColorScheme * highlight SpellRare ctermfg=10 guifg=#00ff00
+
+
 """ Configure Smooth Scrolling
 function! SetSmoothScrollSlow()
     noremap <silent> <c-u> :call smooth_scroll#up   (&scroll   , 4 , 1)<CR>
@@ -208,7 +226,7 @@ if term_program =="iTerm.app"
 
    autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Vim"
    autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
-endif    
+endif
 
 
 """ Convert tabs to spaces, tab = 4 spaces
@@ -231,6 +249,9 @@ autocmd FileType applescript :setlocal commentstring=#\ %s
 
 " Matlab uses %
 autocmd FileType matlab setlocal commentstring=\%\ %s
+
+" So does literate haskell
+autocmd FileType lhaskell setlocal commentstring=\%\ %s
 
 " Php should use // as comment style, but html in php files should be
 " commented like html. To make this happe, we set the default 
@@ -268,10 +289,6 @@ let g:pymode_doc = 0
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
-""" Setup spell checking
-command! SpellEN setlocal spell spelllang=en_us
-command! SpellSW setlocal spell spelllang=sv
-command! NoSpell setlocal nospell
 
 """ Configure Markdown Mode
 
@@ -285,11 +302,14 @@ augroup END
 
 source ~/.vim/syntax-specific/markdown.vim
 
+""" Literate haskell
+au FileType lhaskell SpellEN
+autocmd FileType lhaskell setlocal textwidth=80
+
 """ Folding
 " set folds unfolded by default
 au BufRead * normal zR
 
-    
 """ Configure delimitMate (auto pairs)
 let delimitMate_expand_cr = 1
 
@@ -406,3 +426,5 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_java_javac_config_file_enabled = 1
+
+let g:syntastic_mode_map = { 'mode': 'passive' }
