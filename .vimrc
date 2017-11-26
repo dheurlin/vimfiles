@@ -1,4 +1,5 @@
 set encoding=utf-8
+set backspace=2 " make backspace work like most other apps"
 syntax on
 
 " TEST, find out what syntax group we're in
