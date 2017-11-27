@@ -4,6 +4,9 @@ autocmd FileType markdown SpellEN
 " do nice line breaks (don't break mid word)
 autocmd FileType markdown set wrap linebreak nolist
 
+" Make text wrap at 80 columns
+autocmd FileType markdown setlocal textwidth=80
+
 " Add syntax highlighting for LaTeX
 let g:vim_markdown_math = 1
 
