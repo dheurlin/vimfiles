@@ -61,7 +61,8 @@ let g:ctrlp_show_hidden = 1
 let mapleader = "ö"
 
 """ Disable all mouse functionality (because that's cheating)
-set mouse=
+set ttymouse=xterm2
+set mouse=a
 
 
 """ Highlight trailing whitespace
@@ -304,8 +305,14 @@ augroup END
 source ~/.vim/syntax-specific/markdown.vim
 
 """ Literate haskell
+au FileType lhaskell set filetype=tex
 au FileType lhaskell SpellEN
 autocmd FileType lhaskell setlocal textwidth=80
+
+""" LaTeX
+au FileType tex SpellEN
+au FileType tex setlocal textwidth=80
+au FileType tex setlocal ts=2 sw=2 sts=2 et
 
 """ Folding
 " set folds unfolded by default
