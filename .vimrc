@@ -167,34 +167,59 @@ let term_program=$TERM_PROGRAM
 
 if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
 
-    set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
-    set t_8b=[48;2;%lu;%lu;%lum  " Ditto
-    set termguicolors " enable true colors
+    " set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
+    " set t_8b=[48;2;%lu;%lu;%lum  " Ditto
+    " set termguicolors " enable true colors
     
-    " let g:my_colo_dark    = 'base16-default-dark'
-    let g:my_colo_dark      = 'monokai'
-    let g:my_colo_light     = 'base16-github'
-    " let g:my_airline_dark = 'base16_default'
-    let g:my_airline_dark   = 'monokai'
-    let g:my_airline_light  = 'papercolor'
+    " " let g:my_colo_dark    = 'base16-default-dark'
+    " let g:my_colo_dark      = 'monokai'
+    " let g:my_colo_light     = 'base16-github'
+    " " let g:my_airline_dark = 'base16_default'
+    " let g:my_airline_dark   = 'monokai'
+    " let g:my_airline_light  = 'papercolor'
 
-    " Use italic comments
-    " autocmd Colorscheme * highlight Comment cterm=italic gui=italic
-    " Set line nr background to background color of text
-    autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
+    " " Use italic comments
+    " " autocmd Colorscheme * highlight Comment cterm=italic gui=italic
+    " " Set line nr background to background color of text
+    " autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
 
-    colo monokai
-    let g:airline_theme = 'monokai'
+    " colo monokai
+    " let g:airline_theme = 'monokai'
 
 " For 256-color terminals
 else
-    set t_Co=256 " Enable 256-color-mode
-    let &t_AB="\e[48;5;%dm"
-    let &t_AF="\e[38;5;%dm"
-    
-    let g:airline_theme = 'monokai'
-    colorscheme monokai
-endif    
+    " set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
+    " set t_8b=[48;2;%lu;%lu;%lum  " Ditto
+    " set termguicolors " enable true colors
+    " set t_Co=256 " Enable 256-color-mode
+    " let &t_AB="\e[48;5;%dm"
+    " let &t_AF="\e[38;5;%dm"
+
+    " let g:airline_theme = 'monokai'
+    " colorscheme monokai
+endif
+
+let g:my_colo_dark      = 'monokai'
+let g:my_colo_light     = 'base16-github'
+" let g:my_airline_dark = 'base16_default'
+let g:my_airline_dark   = 'monokai'
+let g:my_airline_light  = 'papercolor'
+
+set t_Co=256 " Enable 256-color-mode
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
+
+set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
+set t_8b=[48;2;%lu;%lu;%lum  " Ditto
+set termguicolors " enable true colors
+
+
+" autocmd Colorscheme * highlight Comment cterm=italic gui=italic
+" Set line nr background to background color of text
+autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
+
+colo monokai
+let g:airline_theme = 'monokai'
 
 " toggle between dark and light themes
 function! ToggleLightDarkTheme()
