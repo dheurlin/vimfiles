@@ -280,8 +280,12 @@ autocmd FileType matlab setlocal commentstring=\%\ %s
 " So does literate haskell
 autocmd FileType lhaskell setlocal commentstring=\%\ %s
 
+" Markdown comments can be acheived the same way as HTML comments
+autocmd FileType markdown setlocal commentstring=<!--%s-->
+autocmd FileType markdown :setlocal commentstring=<!--%s-->
+
 " Php should use // as comment style, but html in php files should be
-" commented like html. To make this happe, we set the default 
+" commented like html. To make this happe, we set the default
 " comment style in php to the html style, and set the comment
 " style of 'phpRegion' to the normal php style
 autocmd FileType php :setlocal commentstring=<!--%s-->
