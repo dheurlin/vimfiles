@@ -153,6 +153,7 @@ Plug 'python-mode/python-mode'
 Plug 'Raimondi/delimitMate'
 Plug 'plasticboy/vim-markdown'
 Plug 'lervag/vimtex'
+Plug 'FredKSchott/CoVim'
 
 call plug#end()
 
@@ -337,6 +338,9 @@ source ~/.vim/syntax-specific/markdown.vim
 au FileType lhaskell set filetype=tex
 au FileType lhaskell SpellEN
 autocmd FileType lhaskell setlocal textwidth=80
+
+""" Haskell
+au FileType haskell set colorcolumn=80
 
 """ LaTeX
 au FileType tex SpellEN
