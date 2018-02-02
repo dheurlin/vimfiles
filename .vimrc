@@ -270,6 +270,15 @@ if has("patch-7.4.354")
     set breakindent
 endif
 
+""" Define extensions
+
+augroup filetypedetect
+    " associate *.pmd with markdown filetype
+    au BufRead,BufNewFile *.pmd setfiletype markdown
+    " au BufRead,BufNewFile *.nlogo setfiletype nlogo
+    " au BufRead,BufNewFile *.nls setfiletype nlogo
+augroup END
+
 """ Comments
 
 " AppleScript should use # as comment style
@@ -284,6 +293,10 @@ autocmd FileType lhaskell setlocal commentstring=\%\ %s
 " Markdown comments can be acheived the same way as HTML comments
 autocmd FileType markdown setlocal commentstring=<!--%s-->
 autocmd FileType markdown :setlocal commentstring=<!--%s-->
+
+" Netlogo comments are ;;
+
+" autocmd FileType 
 
 " Php should use // as comment style, but html in php files should be
 " commented like html. To make this happe, we set the default
@@ -327,10 +340,6 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " Define extension that specifies that the file is a pandoc markdown.
 " Only these will be auto-compiled to pdf when we save
-augroup filetypedetect
-    au BufRead,BufNewFile *.pmd setfiletype markdown
-    " associate *.pmd with markdown filetype
-augroup END
 
 source ~/.vim/syntax-specific/markdown.vim
 
