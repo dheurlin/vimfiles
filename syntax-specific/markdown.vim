@@ -13,7 +13,7 @@ let g:vim_markdown_math = 1
 " also make it work for \begin{...} ... \end{...} blocks
 autocmd FileType markdown syn region mkdMath start="\\begin{.*}" end="\\end{.*}" contains=@tex keepend
 
-" Command for compiling current file using pandoc, without 
+" Command for compiling current file using pandoc, without
 " printing stuff to the terminal
 function! CompMD()
     silent exec "! (~/.vim/md-make.sh '%:p'&) > /dev/null"
@@ -39,7 +39,10 @@ autocmd FileType markdown nnoremap <buffer> <c-i>l i[]()<esc>F[a
 " Command for inserting image from link
 autocmd FileType markdown command! -buffer -nargs=1 -complete=file ImgFromLink normal "='![]('.<q-args>.')'<c-m>PF[
 
-" autocmd FileType markdown command! -buffer -nargs=1 -complete=file 
+""" Commands for inserting code block. The gereral systax is <c-i>c[language-specific key]
+autocmd FileType markdown nnoremap <c-i>ch i```haskell<CR><CR>```<esc>k
+
+" autocmd FileType markdown command! -buffer -nargs=1 -complete=file
     " \ FigFromLink normal "='\begin{figure}[h]\\t\includegraphics[]{'.<q-args>.'}\t\caption{}\t\end{figure}'<c-m>Pk
 
 " Rotates an image. This requires that the image be included using
@@ -48,7 +51,7 @@ autocmd FileType markdown command! -buffer -nargs=1 -complete=file ImgFromLink n
 "     " If we dont already haev the inline LaTeX
 "     let line=getline('.')
 "     if line =~ '!\[.*\]\(.*\)'
-"        s /!\[(.*)\]\((.*)\)/hej \1 och \2/ 
+"        s /!\[(.*)\]\((.*)\)/hej \1 och \2/
 "     else
 "         echo "fuck you"
 "     endif
@@ -56,4 +59,4 @@ autocmd FileType markdown command! -buffer -nargs=1 -complete=file ImgFromLink n
 
 
 " " ![hej, hag heter kuk](lslsls)
-    
+ 

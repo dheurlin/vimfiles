@@ -110,7 +110,7 @@ endfunc
 function! RelNumEnable()
     set relativenumber
     call SetSmoothScrollFast()
-endfunc    
+endfunc
 
 function! NumberToggle()
   if(&relativenumber == 1)
