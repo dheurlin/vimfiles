@@ -200,9 +200,8 @@ else
     " colorscheme monokai
 endif
 
-let g:my_colo_dark      = 'monokai'
-let g:my_colo_light     = 'base16-github'
-" let g:my_airline_dark = 'base16_default'
+let g:my_colo_dark      = 'base16-tomorrow-night'
+let g:my_colo_light     = 'solarized8_light'
 let g:my_airline_dark   = 'monokai'
 let g:my_airline_light  = 'papercolor'
 
@@ -219,8 +218,8 @@ set termguicolors " enable true colors
 " Set line nr background to background color of text
 autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
 
-colo monokai
-let g:airline_theme = 'monokai'
+exe 'colo '.g:my_colo_dark
+let g:airline_theme = g:my_airline_dark
 
 " toggle between dark and light themes
 function! ToggleLightDarkTheme()
