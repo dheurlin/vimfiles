@@ -200,10 +200,11 @@ else
     " colorscheme monokai
 endif
 
-let g:my_colo_dark      = 'base16-tomorrow-night'
-let g:my_colo_light     = 'solarized8_light'
-let g:my_airline_dark   = 'monokai'
-let g:my_airline_light  = 'papercolor'
+let g:my_colo_dark         = 'base16-tomorrow-night'
+let g:my_colo_light        = 'solarized8_light'
+let g:my_airline_dark      = 'monokai'
+let g:my_airline_light     = 'solarized'
+let g:airline_solarized_bg = 'dark'
 
 set t_Co=256 " Enable 256-color-mode
 let &t_AB="\e[48;5;%dm"
