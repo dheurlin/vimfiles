@@ -60,9 +60,14 @@ let g:ctrlp_show_hidden = 1
 """ Remap the leader key (\) to ö for ease on Swedish keyboard
 let mapleader = "ö"
 
-""" Disable all mouse functionality (because that's cheating)
+""" Enable mouse
 set ttymouse=xterm2
 set mouse=a
+
+""" Changecursor in different modes in tmux
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 
 """ Highlight trailing whitespace
