@@ -78,6 +78,29 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred guibg=darkred
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
+""" Functions to automatically remove trailing whitespace
+"" Credits to vim.wikia.org
+function! ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
+endfunction
+
+function! TrimSpaces() range
+  let oldhlsearch=ShowSpaces(1)
+  execute a:firstline.",".a:lastline."substitute ///gec"
+  let &hlsearch=oldhlsearch
+endfunction
+
+command! -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
+command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+nnoremap <leader>w   m`:TrimSpaces<CR>``
+vnoremap <leader>w   :TrimSpaces<CR>
 
 """ Setup spell checking
 command! SpellEN setlocal spell spelllang=en_us
@@ -149,7 +172,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'godlygeek/csapprox'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
@@ -376,7 +398,7 @@ let g:airline_symbols.linenr = ''
 " let g:airline_symbols.branch = '⭠'
 " let g:airline_symbols.readonly = '⭤'
 " let g:airline_symbols.linenr = '⭡'
-    
+
 """ Configure airline to replace the tab-bar with open buffers
 
 " Enable the list of buffers
@@ -434,11 +456,9 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
-" Hide highlighted line underline in terminal 
+" Hide highlighted line underline in terminal
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 
-" Set lazyredraw, makes vim less laggy for some reason
-set lazyredraw
 
 """ Setup syntastic options for syntax checking
 set statusline+=%#warningmsg#
