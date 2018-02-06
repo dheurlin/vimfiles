@@ -159,6 +159,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'plasticboy/vim-markdown'
 Plug 'lervag/vimtex'
 Plug 'FredKSchott/CoVim'
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 
@@ -176,7 +177,7 @@ if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
     " set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
     " set t_8b=[48;2;%lu;%lu;%lum  " Ditto
     " set termguicolors " enable true colors
-    
+
     " " let g:my_colo_dark    = 'base16-default-dark'
     " let g:my_colo_dark      = 'monokai'
     " let g:my_colo_light     = 'base16-github'
