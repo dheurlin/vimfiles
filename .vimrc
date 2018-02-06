@@ -162,6 +162,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'plasticboy/vim-markdown'
 Plug 'lervag/vimtex'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
@@ -232,7 +233,7 @@ nnoremap <leader>b :call ToggleLightDarkTheme()<cr>
 """ Make iTerm automatically change to the 'Vim' profile when opening vim,
 " and change back when exiting
 if term_program =="iTerm.app"
-   let curr_theme=system("~/.vim/iterm-prof.sh --get-current") 
+   let curr_theme=system("~/.vim/iterm-prof.sh --get-current")
 
    autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Vim"
    autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
