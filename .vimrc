@@ -254,12 +254,12 @@ nnoremap <leader>b :call ToggleLightDarkTheme()<cr>
 
 """ Make iTerm automatically change to the 'Vim' profile when opening vim,
 " and change back when exiting
-if term_program =="iTerm.app"
-   let curr_theme=system("~/.vim/iterm-prof.sh --get-current")
+" if term_program =="iTerm.app"
+"    let curr_theme=system("~/.vim/iterm-prof.sh --get-current")
 
-   autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Vim"
-   autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
-endif
+"    autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Vim"
+"    autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
+" endif
 
 
 """ Convert tabs to spaces, tab = 4 spaces
