@@ -69,12 +69,38 @@ let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
+""" Use incremental search
+set incsearch
+
 
 """ Highlight trailing whitespace
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred guibg=darkred
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
+""" Functions to automatically remove trailing whitespace
+"" Credits to vim.wikia.org
+function! ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
+endfunction
+
+function! TrimSpaces() range
+  let oldhlsearch=ShowSpaces(1)
+  execute a:firstline.",".a:lastline."substitute ///gec"
+  let &hlsearch=oldhlsearch
+endfunction
+
+command! -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
+command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+nnoremap <leader>w   m`:TrimSpaces<CR>``
+vnoremap <leader>w   :TrimSpaces<CR>
 
 """ Setup spell checking
 command! SpellEN setlocal spell spelllang=en_us
@@ -146,7 +172,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'godlygeek/csapprox'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
@@ -158,7 +183,8 @@ Plug 'python-mode/python-mode'
 Plug 'Raimondi/delimitMate'
 Plug 'plasticboy/vim-markdown'
 Plug 'lervag/vimtex'
-Plug 'FredKSchott/CoVim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
@@ -173,36 +199,10 @@ let term_program=$TERM_PROGRAM
 
 if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
 
-    " set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
-    " set t_8b=[48;2;%lu;%lu;%lum  " Ditto
-    " set termguicolors " enable true colors
-    
-    " " let g:my_colo_dark    = 'base16-default-dark'
-    " let g:my_colo_dark      = 'monokai'
-    " let g:my_colo_light     = 'base16-github'
-    " " let g:my_airline_dark = 'base16_default'
-    " let g:my_airline_dark   = 'monokai'
-    " let g:my_airline_light  = 'papercolor'
-
-    " " Use italic comments
-    " " autocmd Colorscheme * highlight Comment cterm=italic gui=italic
-    " " Set line nr background to background color of text
-    " autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
-
-    " colo monokai
-    " let g:airline_theme = 'monokai'
 
 " For 256-color terminals
 else
-    " set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
-    " set t_8b=[48;2;%lu;%lu;%lum  " Ditto
-    " set termguicolors " enable true colors
-    " set t_Co=256 " Enable 256-color-mode
-    " let &t_AB="\e[48;5;%dm"
-    " let &t_AF="\e[38;5;%dm"
 
-    " let g:airline_theme = 'monokai'
-    " colorscheme monokai
 endif
 
 let g:my_colo_dark         = 'base16-tomorrow-night'
@@ -255,7 +255,7 @@ nnoremap <leader>b :call ToggleLightDarkTheme()<cr>
 """ Make iTerm automatically change to the 'Vim' profile when opening vim,
 " and change back when exiting
 if term_program =="iTerm.app"
-   let curr_theme=system("~/.vim/iterm-prof.sh --get-current") 
+   let curr_theme=system("~/.vim/iterm-prof.sh --get-current")
 
    autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Vim"
    autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
@@ -407,7 +407,7 @@ let g:airline_symbols.linenr = ''
 " let g:airline_symbols.branch = '⭠'
 " let g:airline_symbols.readonly = '⭤'
 " let g:airline_symbols.linenr = '⭡'
-    
+
 """ Configure airline to replace the tab-bar with open buffers
 
 " Enable the list of buffers
@@ -465,11 +465,9 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
-" Hide highlighted line underline in terminal 
+" Hide highlighted line underline in terminal
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 
-" Set lazyredraw, makes vim less laggy for some reason
-set lazyredraw
 
 """ Setup syntastic options for syntax checking
 set statusline+=%#warningmsg#
