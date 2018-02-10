@@ -1,6 +1,11 @@
 *~
 *.swp
 *.swo
+*.swn
 .netrwhist
 tags
 plugged
+
+
+## Spell-check files ought 2 b ignored
+spell
