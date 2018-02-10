@@ -185,6 +185,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'lervag/vimtex'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'justinmk/vim-sneak'
+Plug 'vim-scripts/haskell.vim'
 
 call plug#end()
 
@@ -301,7 +302,7 @@ autocmd FileType markdown :setlocal commentstring=<!--%s-->
 
 " Netlogo comments are ;;
 
-" autocmd FileType 
+" autocmd FileType
 
 " Php should use // as comment style, but html in php files should be
 " commented like html. To make this happe, we set the default
@@ -354,7 +355,7 @@ au FileType lhaskell SpellEN
 autocmd FileType lhaskell setlocal textwidth=80
 
 """ Haskell
-au FileType haskell set colorcolumn=80
+au FileType haskell setlocal colorcolumn=80
 
 """ LaTeX
 au FileType tex SpellEN
