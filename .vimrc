@@ -60,9 +60,11 @@ let g:ctrlp_show_hidden = 1
 """ Remap the leader key (\) to ö for ease on Swedish keyboard
 let mapleader = "ö"
 
-""" Enable mouse
+""" Enable mouse in visual and normal modes
+" Insert mode is disabled to prevent the cursor from flying away
+" when you accidentally tap the touchpad
 set ttymouse=xterm2
-set mouse=a
+set mouse=nv
 
 
 """ Use incremental search
