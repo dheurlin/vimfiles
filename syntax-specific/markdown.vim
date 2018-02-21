@@ -40,6 +40,8 @@ autocmd FileType markdown nnoremap <buffer> <c-i>l i[]()<esc>F[a
 autocmd FileType markdown command! -buffer -nargs=1 -complete=file ImgFromLink normal "='![]('.<q-args>.')'<c-m>PF[
 
 """ Commands for inserting code block. The gereral systax is <c-i>c[language-specific key]
+
+autocmd FileType markdown nnoremap <c-i>ch c```<CR><CR>```<esc>k "generic inline code
 autocmd FileType markdown nnoremap <c-i>ch i```haskell<CR><CR>```<esc>k
 
 " autocmd FileType markdown command! -buffer -nargs=1 -complete=file

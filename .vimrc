@@ -16,6 +16,8 @@ command! Vrc edit ~/.vimrc
 """ accedently hold shift
 command! W w
 
+imap <C-L> <DEL>
+
 """"" Setup netrw to look like NERDtree
 
 let g:netrw_banner       = 0
