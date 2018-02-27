@@ -208,7 +208,7 @@ endif
 
 let g:my_colo_dark         = 'base16-tomorrow-night'
 let g:my_colo_light        = 'solarized8_light'
-let g:my_airline_dark      = 'monokai'
+let g:my_airline_dark      = 'deus'
 let g:my_airline_light     = 'solarized'
 let g:airline_solarized_bg = 'dark'
 
@@ -252,16 +252,6 @@ function! ToggleLightDarkTheme()
 endfunction
 
 nnoremap <leader>b :call ToggleLightDarkTheme()<cr>
-
-""" Make iTerm automatically change to the 'Vim' profile when opening vim,
-" and change back when exiting
-" if term_program =="iTerm.app"
-"    let curr_theme=system("~/.vim/iterm-prof.sh --get-current")
-
-"    autocmd VimEnter * :silent ! ~/.vim/iterm-prof.sh --set "Vim"
-"    autocmd VimLeave * :execute '! ~/.vim/iterm-prof.sh --set "'.curr_theme.'"'
-" endif
-
 
 """ Convert tabs to spaces, tab = 4 spaces
 set tabstop=4
