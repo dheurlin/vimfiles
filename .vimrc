@@ -65,7 +65,7 @@ let mapleader = "ö"
 """ Enable mouse in visual and normal modes
 " Insert mode is disabled to prevent the cursor from flying away
 " when you accidentally tap the touchpad
-set ttymouse=xterm2
+" set ttymouse=xterm2
 set mouse=nv
 
 
@@ -198,23 +198,15 @@ let g:CSApprox_loaded = 1
 " For gui and true color terminals (currently just iTerm)
 let term_program=$TERM_PROGRAM
 
-if has("gui_running") || (term_program == "iTerm.app" && has("termguicolors"))
-
-
-" For 256-color terminals
-else
-
-endif
-
 let g:my_colo_dark         = 'base16-tomorrow-night'
 let g:my_colo_light        = 'solarized8_light'
 let g:my_airline_dark      = 'deus'
 let g:my_airline_light     = 'solarized'
 let g:airline_solarized_bg = 'dark'
 
-set t_Co=256 " Enable 256-color-mode
-let &t_AB="\e[48;5;%dm"
-let &t_AF="\e[38;5;%dm"
+" set t_Co=256 " Enable 256-color-mode
+" let &t_AB="\e[48;5;%dm"
+" let &t_AF="\e[38;5;%dm"
 
 set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
 set t_8b=[48;2;%lu;%lu;%lum  " Ditto
@@ -227,6 +219,17 @@ autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
 
 exe 'colo '.g:my_colo_dark
 let g:airline_theme = g:my_airline_dark
+
+" Enable transparency
+function! SetTransBG()
+  hi! Normal ctermbg=NONE guibg=NONE
+  hi! LineNr guibg=NONE
+  hi! CursorLineNR guibg=NONE
+endfunc
+
+command! SetTrans call SetTransBG()
+
+:SetTrans
 
 " toggle between dark and light themes
 function! ToggleLightDarkTheme()
