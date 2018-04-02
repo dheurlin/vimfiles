@@ -26,6 +26,9 @@ let g:netrw_browse_split = 4
 let g:netrw_altv         = 1
 let g:netrw_winsize      = 25
 
+"" Don't highlight shit after searcg
+set nohlsearch
+
 
 """ NERDtree settings
 
@@ -195,7 +198,6 @@ call plug#end()
 " disable CSApprox for now, cos it breks italic fonts for some reason
 let g:CSApprox_loaded = 1
 
-" For gui and true color terminals (currently just iTerm)
 let term_program=$TERM_PROGRAM
 
 let g:my_colo_dark         = 'base16-tomorrow-night'
@@ -213,7 +215,7 @@ set t_8b=[48;2;%lu;%lu;%lum  " Ditto
 set termguicolors " enable true colors
 
 
-" autocmd Colorscheme * highlight Comment cterm=italic gui=italic
+autocmd Colorscheme * highlight Comment cterm=italic gui=italic
 " Set line nr background to background color of text
 autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
 
@@ -229,7 +231,7 @@ endfunc
 
 command! SetTrans call SetTransBG()
 
-:SetTrans
+" SetTrans
 
 " toggle between dark and light themes
 function! ToggleLightDarkTheme()
