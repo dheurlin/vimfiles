@@ -41,8 +41,15 @@ autocmd FileType markdown command! -buffer -nargs=1 -complete=file ImgFromLink n
 
 """ Commands for inserting code block. The gereral systax is <c-i>c[language-specific key]
 
-autocmd FileType markdown nnoremap <c-i>cc i```<CR><CR>```<esc>k "generic inline code
+" generic inline code
+autocmd FileType markdown nnoremap <c-i>cc i```<CR><CR>```<esc>k
+" Haskell
 autocmd FileType markdown nnoremap <c-i>ch i```haskell<CR><CR>```<esc>k
+
+
+""" Misc shortcuts
+" comment-ish thing, mostly for haskell-style proof annotations
+autocmd FileType markdown nnoremap <leader>ns a{-   -}<esc>hhhi
 
 " autocmd FileType markdown command! -buffer -nargs=1 -complete=file
     " \ FigFromLink normal "='\begin{figure}[h]\\t\includegraphics[]{'.<q-args>.'}\t\caption{}\t\end{figure}'<c-m>Pk
