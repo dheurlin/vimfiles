@@ -332,8 +332,8 @@ let g:context#commentstring#table.xhtml = g:context#commentstring#table.html
 " only show documentation when autocompleting
 let g:pymode_doc = 0
 " remove doc after autocompletion is done
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 
 """ Configure Markdown Mode
@@ -477,3 +477,14 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_java_javac_config_file_enabled = 1
 
 let g:syntastic_mode_map = { 'mode': 'passive' }
+
+
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
