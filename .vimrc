@@ -182,7 +182,7 @@ Plug 'suy/vim-context-commentstring' "Makes vim commentary change comment type w
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/applescript.vim'
 Plug 'godlygeek/tabular'
-Plug 'python-mode/python-mode'
+" Plug 'python-mode/python-mode'
 Plug 'Raimondi/delimitMate'
 Plug 'plasticboy/vim-markdown'
 Plug 'lervag/vimtex'
@@ -214,8 +214,9 @@ set t_8f=[38;2;%lu;%lu;%lum  " Needed in tmux
 set t_8b=[48;2;%lu;%lu;%lum  " Ditto
 set termguicolors " enable true colors
 
-
-autocmd Colorscheme * highlight Comment cterm=italic gui=italic
+if !exists('$TMUX')
+    autocmd Colorscheme * highlight Comment cterm=italic gui=italic
+endif
 " Set line nr background to background color of text
 autocmd Colorscheme * execute 'hi LineNr guibg='.synIDattr(hlID("Normal"), "bg")
 
