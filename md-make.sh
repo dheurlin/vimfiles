@@ -6,4 +6,4 @@ TARGET="$1"
 pandoc -o "$TARGET.pdf" "$TARGET" --standalone -F pandoc-citeproc --csl ~/.vim/ieee.csl
 
 # Make zathura refresh
-killall -HUP zathura &> /dev/null
+# killall -HUP zathura &> /dev/null
