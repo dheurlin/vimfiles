@@ -189,6 +189,8 @@ Plug 'lervag/vimtex'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'justinmk/vim-sneak'
 Plug 'vim-scripts/haskell.vim'
+Plug 'vim-scripts/ebnf.vim'
+Plug 'elmcast/elm-vim'
 
 call plug#end()
 
@@ -200,9 +202,9 @@ let g:CSApprox_loaded = 1
 
 let term_program=$TERM_PROGRAM
 
-let g:my_colo_dark         = 'base16-tomorrow-night'
+let g:my_colo_dark         = 'base16-classic-dark'
 let g:my_colo_light        = 'solarized8_light'
-let g:my_airline_dark      = 'deus'
+let g:my_airline_dark      = 'base16_classic'
 let g:my_airline_light     = 'solarized'
 let g:airline_solarized_bg = 'dark'
 
@@ -260,9 +262,17 @@ endfunction
 nnoremap <leader>b :call ToggleLightDarkTheme()<cr>
 
 """ Convert tabs to spaces, tab = 4 spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+
+function! SetTabs(n)
+    exe "set tabstop=".a:n
+    exe "set softtabstop=".a:n
+    exe "set shiftwidth=".a:n
+endfunction
+
+nnoremap <leader>t2 :call SetTabs(2)<cr>
+nnoremap <leader>t4 :call SetTabs(4)<cr>
+
+call SetTabs(4)
 set expandtab
 set autoindent  "Keep indentation from previous line
 filetype plugin indent on
@@ -333,8 +343,8 @@ let g:context#commentstring#table.xhtml = g:context#commentstring#table.html
 " only show documentation when autocompleting
 let g:pymode_doc = 0
 " remove doc after autocompletion is done
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 
 """ Configure Markdown Mode
@@ -387,10 +397,14 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+let g:airline_left_sep = ' '
+let g:airline_left_alt_sep = '|'
+let g:airline_right_sep = ' '
+let g:airline_right_alt_sep = '|'
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
@@ -478,3 +492,14 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_java_javac_config_file_enabled = 1
 
 let g:syntastic_mode_map = { 'mode': 'passive' }
+
+
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>

@@ -25,6 +25,15 @@ autocmd FileType markdown command! -buffer CompMD call CompMD()
 " Make it automatically compile when we save the buffer
 autocmd BufWritePost *.pmd CompMD
 
+" A command to generate a table of contents in a markdown file. Requires https://github.com/ekalinin/github-markdown-toc
+function! MDToc()
+	silent exec "read ! head -n -2 <<< $(gh-md-toc %)"
+	redraw!
+endfunction
+
+
+autocmd FileType markdown command! -buffer MDToc call MDToc()
+
 " Command for opening the pdf of the current file in zathura
 function! OpenPDF()
     silent exec "! (~/.vim/open-note-setup.sh '%:p'.pdf &) > /dev/null"

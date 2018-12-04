@@ -7,4 +7,4 @@ TARGET="$1"
 pandoc -o "$TARGET.pdf" --pdf-engine=xelatex "$TARGET"
 
 # Make zathura refresh
-killall -HUP zathura &> /dev/null
+# killall -HUP zathura &> /dev/null
