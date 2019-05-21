@@ -244,14 +244,14 @@ function! ToggleLightDarkTheme()
         endif
     endif
 
-    " change airline theme
-    if (exists('g:my_airline_dark') && exists('g:airline_theme'))
-        if g:airline_theme == g:my_airline_dark
-            exe 'AirlineTheme '.g:my_airline_light
-        else
-            exe 'AirlineTheme '.g:my_airline_dark
-        endif
-    endif
+"     " change airline theme
+"     if (exists('g:my_airline_dark') && exists('g:airline_theme'))
+"         if g:airline_theme == g:my_airline_dark
+"             exe 'AirlineTheme '.g:my_airline_light
+"         else
+"             exe 'AirlineTheme '.g:my_airline_dark
+"         endif
+"     endif
 
 endfunction
 
