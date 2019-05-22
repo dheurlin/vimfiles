@@ -191,6 +191,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'vim-scripts/haskell.vim'
 Plug 'vim-scripts/ebnf.vim'
 Plug 'elmcast/elm-vim'
+Plug 'rhysd/vim-llvm'
+Plug 'BeneCollyridam/futhark-vim'
 
 call plug#end()
 
@@ -305,6 +307,8 @@ autocmd FileType lhaskell setlocal commentstring=\%\ %s
 " Markdown comments can be acheived the same way as HTML comments
 autocmd FileType markdown setlocal commentstring=<!--%s-->
 autocmd FileType markdown :setlocal commentstring=<!--%s-->
+
+autocmd FileType fut :setlocal commentstring=--\ %s
 
 " Netlogo comments are ;;
 
