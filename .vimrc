@@ -62,8 +62,10 @@ let g:ctrlp_cmd = 'call CtrlPCommand()'
 let g:ctrlp_show_hidden = 1
 
 
-""" Remap the leader key (\) to ö for ease on Swedish keyboard
-let mapleader = "ö"
+""" Remap the leader key (\) to ö for ease on Swedish keyboard and localleader
+"" to ä
+let mapleader      = "ö"
+let maplocalleader = "ä"
 
 """ Enable mouse in visual and normal modes
 " Insert mode is disabled to prevent the cursor from flying away
@@ -191,6 +193,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'vim-scripts/haskell.vim'
 Plug 'vim-scripts/ebnf.vim'
 Plug 'elmcast/elm-vim'
+Plug 'idris-hackers/idris-vim'
 
 call plug#end()
 
@@ -362,6 +365,8 @@ autocmd FileType lhaskell setlocal textwidth=80
 
 """ Haskell
 au FileType haskell setlocal colorcolumn=80
+
+""" Idris
 
 """ LaTeX
 au FileType tex SpellEN
