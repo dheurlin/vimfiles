@@ -63,7 +63,8 @@ let g:ctrlp_cmd = 'call CtrlPCommand()'
 let g:ctrlp_show_hidden = 1
 
 
-""" Remap the leader key (\) to ö for ease on Swedish keyboard
+""" Remap the leader key (\) to ö for ease on Swedish keyboard and localleader
+"" to ä
 let mapleader      = "ö"
 let maplocalleader = "ä"
 
@@ -343,6 +344,8 @@ autocmd FileType lhaskell setlocal textwidth=80
 
 """ Haskell
 au FileType haskell setlocal colorcolumn=80
+
+""" Idris
 
 """ LaTeX
 au FileType tex SpellEN
