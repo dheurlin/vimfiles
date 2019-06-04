@@ -1,6 +1,7 @@
 set encoding=utf-8
 set backspace=2 " make backspace work like most other apps"
 syntax on
+set ruler
 
 " TEST, find out what syntax group we're in
 " augroup temporary_test
@@ -118,20 +119,6 @@ autocmd ColorScheme * highlight clear SpellRare
 autocmd ColorScheme * highlight SpellRare ctermfg=10 guifg=#00ff00
 
 
-""" Configure Smooth Scrolling
-function! SetSmoothScrollSlow()
-    noremap <silent> <c-u> :call smooth_scroll#up   (&scroll   , 4 , 1)<CR>
-    noremap <silent> <c-d> :call smooth_scroll#down (&scroll   , 4 , 1)<CR>
-    noremap <silent> <c-b> :call smooth_scroll#up   (&scroll*2 , 4 , 3)<CR>
-    noremap <silent> <c-f> :call smooth_scroll#down (&scroll*2 , 4 , 3)<CR>
-endfunction
-
-function! SetSmoothScrollFast()
-    noremap <silent> <c-u> :call smooth_scroll#up   (&scroll   , 0 , 4)<CR>
-    noremap <silent> <c-d> :call smooth_scroll#down (&scroll   , 0 , 4)<CR>
-    noremap <silent> <c-b> :call smooth_scroll#up   (&scroll*2 , 0 , 6)<CR>
-    noremap <silent> <c-f> :call smooth_scroll#down (&scroll*2 , 0 , 6)<CR>
-endfunction
 
 """ Setup line numbers
 
@@ -139,12 +126,10 @@ endfunction
 " and speed up scrolling when relative, because otherwise it gets laggy
 function! RelNumDisable()
     set nornu
-    call SetSmoothScrollSlow()
 endfunc
 
 function! RelNumEnable()
     set relativenumber
-    call SetSmoothScrollFast()
 endfunc
 
 function! NumberToggle()
@@ -175,22 +160,22 @@ Plug 'kien/ctrlp.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'terryma/vim-smooth-scroll'
+" Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring' "Makes vim commentary change comment type when language changes within file
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/applescript.vim'
-Plug 'godlygeek/tabular'
-Plug 'Raimondi/delimitMate'
-Plug 'plasticboy/vim-markdown'
-Plug 'lervag/vimtex'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'vim-scripts/applescript.vim'
+" Plug 'godlygeek/tabular'
+" Plug 'Raimondi/delimitMate'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'lervag/vimtex'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'justinmk/vim-sneak'
-Plug 'vim-scripts/haskell.vim'
-Plug 'vim-scripts/ebnf.vim'
-Plug 'elmcast/elm-vim'
-Plug 'idris-hackers/idris-vim'
+" Plug 'vim-scripts/haskell.vim'
+" Plug 'vim-scripts/ebnf.vim'
+" Plug 'elmcast/elm-vim'
+" Plug 'idris-hackers/idris-vim'
 Plug 'ap/vim-buftabline'
 call plug#end()
 
