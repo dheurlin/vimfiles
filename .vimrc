@@ -3,6 +3,9 @@ set backspace=2 " make backspace work like most other apps"
 syntax on
 set ruler
 
+set undofile
+set undodir=~/.vim/undodir
+
 " TEST, find out what syntax group we're in
 " augroup temporary_test
 "       autocmd CursorMoved <buffer>
