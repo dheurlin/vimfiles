@@ -5,6 +5,7 @@
 .netrwhist
 tags
 plugged
+undodir/*
 
 
 ## Spell-check files ought 2 b ignored
