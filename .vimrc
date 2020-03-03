@@ -249,9 +249,9 @@ nnoremap <leader>b :call ToggleLightDarkTheme()<cr>
 """ Convert tabs to spaces, tab = 4 spaces
 
 function! SetTabs(n)
-    exe "set tabstop=".a:n
-    exe "set softtabstop=".a:n
-    exe "set shiftwidth=".a:n
+    exe "setlocal tabstop=".a:n
+    exe "setlocal softtabstop=".a:n
+    exe "setlocal shiftwidth=".a:n
 endfunction
 
 nnoremap <leader>t2 :call SetTabs(2)<cr>
@@ -349,6 +349,7 @@ autocmd FileType lhaskell setlocal textwidth=80
 
 """ Haskell
 au FileType haskell setlocal colorcolumn=80
+au FileType haskell call SetTabs(2)
 
 """ Idris
 
