@@ -18,6 +18,20 @@ imap <C-L> <DEL>
 "" Don't highlight shit after searcg
 set nohlsearch
 
+
+""" Set the status line
+
+set statusline=
+set statusline+=\ %f
+set statusline+=%=
+set statusline+=%#CursorLineNr#
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ 
+
 """ NERDtree settings
 
 " Toggle nerdtree using Ctrl+k
@@ -234,6 +248,10 @@ autocmd FileType lhaskell setlocal textwidth=80
 """ Haskell
 au FileType haskell setlocal colorcolumn=80
 au FileType haskell call SetTabs(2)
+
+""" Html
+au FileType html       call SetTabs(2)
+au FileType htmldjango call SetTabs(2)
 
 """ Idris
 
