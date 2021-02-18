@@ -18,6 +18,10 @@ imap <C-L> <DEL>
 "" Don't highlight shit after searcg
 set nohlsearch
 
+""" Remap the leader key (\) to ö for ease on Swedish keyboard and localleader
+"" to ä
+let mapleader      = " "
+let maplocalleader = "ä"
 
 """ Set the status line
 
@@ -46,27 +50,14 @@ let g:nerdtree_tabs_open_on_console_startup = 2
 " Hide certain file types in NERDtree
 let NERDTreeIgnore = ['\.pyc$', '\.class$']
 
-""" Setup CtrlP so that it doesn't open files in NERDtree buffer
-function! CtrlPCommand()
-    let c = 0
-    let wincount = winnr('$')
-    " Don't open it here if current buffer is not writable (e.g. NERDTree)
-    while !empty(getbufvar(+expand("<abuf>"), "&buftype")) && c < wincount
-        exec 'wincmd w'
-        let c = c + 1
-    endwhile
-    exec 'CtrlP'
-endfunction
+"""""""" Bindings for fzf
+nnoremap <C-p> :Files<CR>
+" Ignore filenames for Rg
+command! -bang -nargs=* Rg call
+            \ fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case "
+            \ .shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+nnoremap <leader>g :Rg<CR>
 
-let g:ctrlp_cmd = 'call CtrlPCommand()'
-
-" make it show hidden files
-let g:ctrlp_show_hidden = 1
-
-""" Remap the leader key (\) to ö for ease on Swedish keyboard and localleader
-"" to ä
-let mapleader      = "ö"
-let maplocalleader = "ä"
 
 """ Enable mouse in visual and normal modes
 set mouse=nv
@@ -112,7 +103,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'hzchirs/vim-material'
 Plug 'scrooloose/nerdtree'
 Plug 'rcabralc/monokai-airline.vim'
-Plug 'kien/ctrlp.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -123,6 +113,15 @@ Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
 Plug 'ap/vim-buftabline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'herringtondarkholme/yats.vim'
+" Plug 'chemzqm/vim-jsx-improve'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'peitalin/vim-jsx-typescript'
+Plug 'edwinb/idris2-vim'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'gdetrez/vim-gf'
 call plug#end()
 
 "" CoC settings
@@ -249,9 +248,19 @@ autocmd FileType lhaskell setlocal textwidth=80
 au FileType haskell setlocal colorcolumn=80
 au FileType haskell call SetTabs(2)
 
+"" GF
+au FileType gf call SetTabs(2)
+
 """ Html
 au FileType html       call SetTabs(2)
 au FileType htmldjango call SetTabs(2)
+
+""" JS / TS ---------------------------------
+au FileType javascript call SetTabs(2)
+au FileType typescript call SetTabs(2)
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+au FileType typescriptreact call SetTabs(2)
 
 """ Idris
 
