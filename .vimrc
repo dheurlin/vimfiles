@@ -51,7 +51,25 @@ let g:nerdtree_tabs_open_on_console_startup = 2
 let NERDTreeIgnore = ['\.pyc$', '\.class$']
 
 """""""" Bindings for fzf
-nnoremap <C-p> :Files<CR>
+
+" For c-p, call GitFiles (respecting gitignore) if in git repo, otherwise call
+" Files
+function! GetGitRoot()
+  let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+  return v:shell_error ? '' : root
+endfunction
+
+function! MyFiles()
+  let root = GetGitRoot()
+  if empty(root)
+    execute 'Files'
+  else
+    execute 'GFiles'
+  endif
+endfunction
+
+nnoremap <C-p> :call MyFiles()<cr>
+
 " Ignore filenames for Rg
 command! -bang -nargs=* Rg call
             \ fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case "
