@@ -130,20 +130,26 @@ Plug 'suy/vim-context-commentstring' "Makes vim commentary change comment type w
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
 Plug 'ap/vim-buftabline'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'herringtondarkholme/yats.vim'
-" Plug 'chemzqm/vim-jsx-improve'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'peitalin/vim-jsx-typescript'
 Plug 'edwinb/idris2-vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'gdetrez/vim-gf'
+"" LSP Stuff
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
+Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
+Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
+Plug 'L3MON4D3/LuaSnip' " Snippets plugin
 call plug#end()
 
-"" CoC settings
-source ~/.vim/include/coc-config.vim
+"" LSP settings
+" Consult
+" https://github.com/kolyamba2105/config-files/tree/master/.config/nvim/lua
+" for reasonable settings
+lua require('lsp')
+source ~/.vim/include/lsp-config.vim
 
 """ Set color theme
 
