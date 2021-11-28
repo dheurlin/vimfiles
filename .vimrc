@@ -2,6 +2,7 @@ set encoding=utf-8
 set backspace=2 " make backspace work like most other apps"
 syntax on
 set ruler
+set hidden
 
 set undofile
 set undodir=~/.vim/undodir
@@ -274,6 +275,10 @@ au FileType haskell call SetTabs(2)
 
 "" GF
 au FileType gf call SetTabs(2)
+
+"" Rust
+au FileType rust call SetTabs(2)
+
 
 """ Html
 au FileType html       call SetTabs(2)
